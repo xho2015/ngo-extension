@@ -25,9 +25,11 @@ namespace demon
 		private static string catalina_home = "";
 		private static string CATALINA_KEY= "CATALINA_HOME";
 		
+		private static Timer timer;
+		
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("tomcat demon v0.9.1.20171120.2221");
+			Console.WriteLine("tomcat demon v0.9.1.20171121.1947");
 
 			catalina_home = Environment.GetEnvironmentVariable(CATALINA_KEY);
 			Console.WriteLine("debug: CATALINA_HONE={0}",catalina_home);
@@ -43,7 +45,8 @@ namespace demon
 			nfile = args[2];
 			interval = int.Parse(args[3]);
 			
-			Timer t = new Timer(TimerCallback, null, 0, interval);		
+			timer = new Timer(TimerCallback, null, 0, interval);
+			
 			while (true)
 				Thread.Sleep(interval);
 		}
